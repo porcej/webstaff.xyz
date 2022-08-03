@@ -19,18 +19,7 @@
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <!-- <link rel="stylesheet" href="./assets/css/styles.css"> -->
 
-  <style type="text/css">
-    .gradient-custom {
-/* fallback for old browsers */
-background: #6a11cb;
 
-/* Chrome 10-25, Safari 5.1-6 */
-background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
-
-/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
-}
-  </style>
 </head>
 <body>
 
@@ -45,7 +34,46 @@ background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 
     <h2 class="text-primary text-center">We are brewing something exciting. Please check back soon.</h2>
 
   </div>
-  <div id="app" class="row">
+  <!-- <div id="app" class="row"> -->
+  
+<form action="#" method="post" class="form-signin">
+  <div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="basic-addon1">@</span>
+  </div>
+  <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+</div>
+
+  <div class="input-group">
+    <span class="input-group-addon"><i class="fa fa-windows fa-fw ltblue" aria-hidden="true"></i> <i class="fa fa-user fa-fw ltblue" aria-hidden="true"></i></span>
+    <label class="sr-only" for="duser">Windows username</label>
+    <input type="text" data-lpignore="true" class="form-control" id="duser" name="duser" tabindex="1" placeholder="Windows username" required autofocus>
+  </div>
+
+<div class="input-group">
+<span class="input-group-addon"><i class="fa fa-windows fa-fw ltblue" aria-hidden="true"></i> <i class="fa fa-key fa-fw ltblue" aria-hidden="true"></i></span>
+<label class="sr-only" for="dpass">Windows password</label>
+<input type="password" data-lpignore="true" class="form-control" id="dpass" name="dpass" tabindex="2" placeholder="Windows password" required>
+</div>
+<div class="input-group">
+<span class="input-group-addon"><i class="fa fa-phone fa-fw ltblue" aria-hidden="true"></i> <i class="fa fa-user fa-fw ltblue" aria-hidden="true"></i></span>
+<label class="sr-only" for="username">Badge number</label>
+<input type="text" data-lpignore="true" class="form-control" id="username" name="username" tabindex="3" placeholder="Badge number" required>
+</div>
+<div class="input-group">
+<span class="input-group-addon"><i class="fa fa-phone fa-fw ltblue" aria-hidden="true"></i> <i class="fa fa-key fa-fw ltblue" aria-hidden="true"></i></span>
+<label class="sr-only" for="password">Telestaff password</label>
+<input type="password" data-lpignore="true" class="form-control" id="password" name="password" tabindex="4" placeholder="Telestaff password" required>
+</div>
+
+<div class="checkbox">
+<label><input type="checkbox" value="remember-me" id="rememberMe" tabindex="5" name="rememberMe"> Keep me signed-in </label>
+</div>
+<button class="btn btn-lg btn-primary btn-block" tabindex="6" type="submit">Login</button>  
+</form>
+
+
+<!-- ---------- ----------     -->
 
   </div>
   <div class="row">
