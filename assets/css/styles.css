@@ -1,3 +1,25 @@
+body { background-color: #1F2933 }
+.navbar-default, .panel > .panel-heading  {
+  background-color: #102A43 !important;
+  border-color: #102A43 !important;
+  color:  #D9E2EC !important;  
+}
+
+.panel { background-color: transparent; border:  none}
+
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+  color: #E7E7E7 !important;
+  background-color: #1D1D1D !important;
+}
+
+/*{
+    color: #333;
+    background-color: #f5f5f5;
+    border-color: #ddd;
+}*/
+
 .app-auth {
   display: block;
 }
@@ -40,6 +62,36 @@
   padding: 15px 35px 45px;
   margin: 0 auto;
  }
+
+
+.form-signin .checkbox {
+  float: left;
+  margin-left: 20px;
+  margin-bottom: 30px;
+  font-weight: normal;
+}
+
+.form-signin .form-control {
+  position: relative;
+  font-size: 16px;
+  height: auto;
+  padding: 10px;
+}
+
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+
+.form-signin input[type="text"] {
+  margin-bottom: -1px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.form-signin input[type="password"] {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
 
 /* Footer Styles */
 .footer {

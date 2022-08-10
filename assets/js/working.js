@@ -86,78 +86,31 @@ function telestaff(){
 		// Login form tempalte
 		login_form: function(data){
 			return `<form action="#" method="post" class="form-signin">
-
-  <!-- Domain Logon -->
-  <fieldset class="row mb-3">
-    <legend class="col-form-label col-sm-1 pt-0 align-middle col-form-label-lg"><i class="fa fa-windows fa-fw ltblue" aria-hidden="true"></i></legend>
-    <div class="col-sm-11">
-      <div class="input-group mb-0">
-        <span class="input-group-text" id="basic-addon-windows-username"><i class="fa fa-user fa-fw ltblue" aria-hidden="true"></i></span>
-        <input 
-          class="form-control"
-          type="text" 
-          data-lpignore="true" 
-          id="duser" 
-          name="duser" 
-          tabindex="1" 
-          class="form-control" 
-          placeholder="Windows username" 
-          aria-label="Windows username" 
-          aria-describedby="basic-addon-windows-username" 
-          required 
-          autofocus
-          >
-
-      <div class="input-group mb-0">
-        <span class="input-group-text" id="basic-addon-windows-password"><i class="fa fa-key fa-fw ltblue" aria-hidden="true"></i></span>
-        <input class="form-control" type="password" data-lpignore="true" id="dpass" name="dpass" tabindex="2" placeholder="Windows password" aria-label="Windows password" aria-describedby="basic-addon-windows-password" required>
-        </div>
-      </div>
+    <div class="input-group">
+      <span class="input-group-addon"><i class="fa fa-windows fa-fw ltblue" aria-hidden="true"></i> <i class="fa fa-user fa-fw ltblue" aria-hidden="true"></i></span>
+      <label class="sr-only" for="duser">Windows username</label>
+      <input type="text" data-lpignore="true" class="form-control" id="duser" name="duser" tabindex="1" placeholder="Windows username" required autofocus>
     </div>
-  </fieldset>
-
-  <!-- Telestaff Logon -->
-  <fieldset class="row mb-3">
-    <legend class="col-form-label col-sm-1 pt-0 align-middle col-form-label-lg"><i class="fa fa-phone fa-fw ltblue" aria-hidden="true"></i></legend>
-    <div class="col-sm-11">
-      <div class="input-group mb-0">
-        <span class="input-group-text" id="basic-addon-username"><i class="fa fa-user fa-fw ltblue" aria-hidden="true"></i></span>
-        <input 
-          class="form-control"
-          type="text" 
-          data-lpignore="true" 
-          id="username" 
-          name="username" 
-          tabindex="3" 
-          class="form-control" 
-          placeholder="Badge number" 
-          aria-label="Badge number" 
-          aria-describedby="basic-addon-username" 
-          required 
-          autofocus
-          >
-
-      <div class="input-group mb-0">
-        <span class="input-group-text" id="basic-addon-password"><i class="fa fa-key fa-fw ltblue" aria-hidden="true"></i></span>
-        <input class="form-control" type="password" data-lpignore="true" id="password" name="password" tabindex="4" placeholder="Telestaff password" aria-label="Telestaff password" aria-describedby="basic-addon-password" required>
-        </div>
-      </div>
+    <div class="input-group">
+      <span class="input-group-addon"><i class="fa fa-windows fa-fw ltblue" aria-hidden="true"></i> <i class="fa fa-key fa-fw ltblue" aria-hidden="true"></i></span>
+      <label class="sr-only" for="dpass">Windows password</label>
+      <input type="password" data-lpignore="true" class="form-control" id="dpass" name="dpass" tabindex="2" placeholder="Windows password" required>
     </div>
-  </fieldset>
-
- <!-- Save -->
-  <fieldset class="row mb-3">
-    <legend class="col-form-label col-sm-1 pt-0 align-middle col-form-label-lg"> </legend>
-    <div class="col-sm-11">
-      <input class="form-check-input" type="checkbox" value="remember-me" id="rememberMe" tabindex="5" name="rememberMe" checked Disabled>
-      <label class="form-check-label" for="rememberMe">  Keep me signed-in </label>
+    <div class="input-group">
+      <span class="input-group-addon"><i class="fa fa-phone fa-fw ltblue" aria-hidden="true"></i> <i class="fa fa-user fa-fw ltblue" aria-hidden="true"></i></span>
+      <label class="sr-only" for="username">Badge number</label>
+      <input type="text" data-lpignore="true" class="form-control" id="username" name="username" tabindex="3" placeholder="Badge number" required>
     </div>
-  </fieldset>
+    <div class="input-group">
+      <span class="input-group-addon"><i class="fa fa-phone fa-fw ltblue" aria-hidden="true"></i> <i class="fa fa-key fa-fw ltblue" aria-hidden="true"></i></span>
+      <label class="sr-only" for="password">Telestaff password</label>
+      <input type="password" data-lpignore="true" class="form-control" id="password" name="password" tabindex="4" placeholder="Telestaff password" required>
+    </div>
 
-  <!-- submit button -->
-  <div class="row d-grid">
-    <button class="btn btn-lg btn-primary" tabindex="6" type="submit">Login</button>  
+  <div class="checkbox">
+    <label><input type="checkbox" value="remember-me" id="rememberMe" tabindex="5" name="rememberMe"> Keep me signed-in </label>
   </div>
+  <button class="btn btn-lg btn-primary btn-block" tabindex="6" type="submit">Login</button>  
 </form>`;
 
 		}
@@ -310,12 +263,12 @@ telestaff.prototype = {
 		target = target || '';
 
 		if (target !== ''){
-			$('ul.navbar').find('.active').removeClass('active');
-			$('ul.navbar-nav > li > ' + target).addClass('active');
+			$('ul.navbar-nav').find('.active').removeClass('active');
+			$('ul.navbar-nav > li.' + target).addClass('active');
 		}
 
-		// $('button.navbar-toggle').addClass('collapsed');
-		// $('button.navbar-toggle').attr('aria-expanded', 'false');
+		$('button.navbar-toggle').addClass('collapsed');
+		$('button.navbar-toggle').attr('aria-expanded', 'false');
 
 	},	// doNav()
 
@@ -591,23 +544,6 @@ $(function () {
 		var day = '';
 
 		[year, month, day] = $("#ts-pl-date-input").val().split('-');
-
-		var selectedDate = new Date();
-		selectedDate.setFullYear( parseInt(year) );
-		selectedDate.setMonth( parseInt(month) - 1 );
-		selectedDate.setDate( parseInt( day ) );
-
-		$.singlePage.doNav( "picklist/" + views._toTelestaffString( selectedDate ) );
-	});
-
-	$("#ts-holdlist-go").on('click', function(e){
-		e.preventDefault;
-
-		var year = '';
-		var month = '';
-		var day = '';
-
-		[year, month, day] = $("#ts-hl-date-input").val().split('-');
 
 		var selectedDate = new Date();
 		selectedDate.setFullYear( parseInt(year) );
