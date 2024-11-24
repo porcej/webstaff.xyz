@@ -11,14 +11,14 @@ Copyright 2017 Joseph Porcelli
 
 (function ($) {
     "use strict";
-    var actionsMap = {};
-    var settings = {
+    const actionsMap = {};
+    const settings = {
         spinnerClass: "loading",
         modalSpinnerClass: "modal-loading",
         homeRoute: "home",
-        errorHandler: function(route){
-            console.log(route + " not found.");
-        }
+        errorHandler: (route) => {
+            console.error(`${route} not found.`);
+        },
     };
 
     /* =========================================================================
@@ -45,59 +45,44 @@ Copyright 2017 Joseph Porcelli
         Gets route as passed to route, or looks for location.hash
         otherwise ignores routing
 
-        Routing Requirments is run prior to routing, if routing requirments
+        Routing Requirements is run prior to routing, if routing requirements
         returns false, routing is not performed
 
     ========================================================================= */
-    function router(route, routingRequirments){
-        // Get route (passed), or form the page's hash. otherwise we 
-        //  dehas or use default
-        // We use the slice(1) for the has to remove the '#'
-        route = route || location.hash.slice(1) || '';
+    function router(route = location.hash.slice(1) || '', routingRequirements) {
 
         // Close nav bar
-        $("#tsNavbar").collapse('hide');
+        // $("#tsNavbar").collapse('hide');
 
-        if ( $.isFunction( routingRequirments )){
-            if ( !routingRequirments( route ) ){
-                return false;
-            }
+        if (typeof routingRequirements === "function" && !routingRequirements(route)) {
+            return false;
         }
 
         // Remove leading and trailing slashes
         route = route.replace(/^\/|\/$/, '');
 
-        if (route === '') {
+        if (["", "login"].includes(route)) {
             route = settings.homeRoute;
-            // return false;
+            if (route === "login") return false;
         }
 
-        if (route === 'login') {
-            route = settings.homeRoute;
-            return false;
-        }
-
-        if (route == 'ignore'){
-            return false;
-        }
+        if (route === "ignore") return false;
 
         var steps = route.split('/');
         var action = steps[0] || false;
 
         // Sanity check here.  This `should` always be true...
-        if( action ){
+        if (action) {
             showLoader();
-            if (( actionsMap.hasOwnProperty( action ) ) && 
-                ( $.isFunction( actionsMap[ action ] ))){
-                    actionsMap[ action ]( route );
-                    return true;
+            if (actionsMap[action] && typeof actionsMap[action] === "function") {
+                actionsMap[action](route);
             } else {
-                settings.errorHandler.call(route);
-                $.singlePage.hideLoader();
+                settings.errorHandler(route);
+                hideLoader();
             }
         } else {
-            settings.errorHandler.call(route);
-            $.singlePage.hideLoader();
+            settings.errorHandler(route);
+            hideLoader();
         }
     }   // router()
 
@@ -107,12 +92,11 @@ Copyright 2017 Joseph Porcelli
     registerErrorHandler: What to do if router cant find route.
 
     ========================================================================= */
-    function registerErrorHandler( action ){
-
-        if ( $.isFunction( action ) ){
+    function registerErrorHandler(action) {
+        if (typeof action === "function") {
             settings.errorHandler = action;
         }
-    }   // registerErrorHandler()
+    }
 
 
     /* =========================================================================
@@ -121,51 +105,46 @@ Copyright 2017 Joseph Porcelli
     and action, a function representing the action to comense.
 
     ========================================================================= */
-    function registerAction( trigger, action ){
-        trigger =  trigger || '';
-        if (( trigger !== '' ) && ( $.isFunction( action ))){
-            actionsMap[ trigger ] = action;
+    function registerAction(trigger, action) {
+        if (trigger && typeof action === "function") {
+            actionsMap[trigger] = action;
         }
-    }   // registerAction()
+    }
 
     /* =========================================================================
     
     registerActtions: takes an object maping action paths to routing. 
 
     ========================================================================= */
-    function registerActions( actions ){
-        if ( typeof actions === "object" ){
-            $.extend(actionsMap, actions);
+    function registerActions(actions) {
+        if (typeof actions === "object") {
+            Object.assign(actionsMap, actions);
         }
-    }   // registerActions()
+    }
 
     /* =========================================================================
     
     createLoader - Adds the html to support loader to end of html
 
     ========================================================================= */
-    function createLoader(){
-        // Check if the spinner exists
-        if ( $("body div." + settings.modalSpinnerClass).length === 0) {
+    function createLoader() {
+        if (!$(`body div.${settings.modalSpinnerClass}`).length) {
             $("body").append(
-                $("<div/>").addClass(settings.modalSpinnerClass).html(
-                    "<i class='fa fa-spinner fa-pulse fa-3x fa-fw ltblue'>" + 
-                    "</i><span class='sr-only'>Loading...</span>"
-
-            ));
+                $("<div/>", { class: settings.modalSpinnerClass }).html(`
+                    <i class="fa fa-spinner fa-pulse fa-3x fa-fw ltblue"></i>
+                    <span class="sr-only">Loading...</span>
+                `)
+            );
         }
 
-        // Add loader to listen for any anchor clicks
-        $("a[href]").click(function(event){
-
-            if ($(this).attr("href") == window.location.hash) {
-                 event.originalEvent.currentTarget.href = $(this).attr("href") + "/";
+        $("a[href]").on("click", function (event) {
+            if ($(this).attr("href") === window.location.hash) {
+                event.currentTarget.href += "/";
             }
         });
 
-        // If an <a> does not have an href, give it #ignore
         $("a:not([href])").attr("href", "#ignore");
-    }   // createLoader()
+    }
 
 
     /* =========================================================================
@@ -173,31 +152,31 @@ Copyright 2017 Joseph Porcelli
     showLoader - shows spinning loader icon
 
     ========================================================================= */
-    function showLoader(){
+    function showLoader() {
         $("body").addClass(settings.spinnerClass);
-    }   // showLoader()
+    }
 
     /* =========================================================================
     
     hideLoader - hides spinning Loader Icon. 
 
     ========================================================================= */
-    function hideLoader(){
+    function hideLoader() {
         $("body").removeClass(settings.spinnerClass);
-    }   // hideLoader()
+    }
 
     /* =========================================================================
     
     doNav- Navigates to action
 
     ========================================================================= */
-    function doNav(action){
-        action = action || '';
-        window.location.hash = "#" + action;
+    function doNav(action = "") {
+        window.location.hash = `#${action}`;
         return this;
-    }   //doNav()
+    }
 
 
+    // Expose API
     $.singlePage = singlePage;
     $.singlePage.registerAction = registerAction;
     $.singlePage.registerActions = registerActions;

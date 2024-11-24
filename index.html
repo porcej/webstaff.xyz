@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="AFD Webstaff | Login">
+  <meta name="description" content="AFD Webstaff">
   <meta name="author" content="Joe Porcelli">
   <title>AFD Webstaff | Login</title>
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -15,50 +15,35 @@
   
 
   <!-- Bootstrap core CSS -->
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="./assets/css/styles.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="./assets/css/styles.css" rel="stylesheet">
 
 </head>
-<body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+<body data-bs-theme="light">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" id="navbar">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#"><i class="fa fa-phone-square ltblue" aria-hidden="true"></i> AFD Webstaff</a>
-
-      <div class="collapse navbar-collapse" id="tsNavbar">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <a class="navbar-brand" href="#"><i class="fa fa-phone-square ltblue" aria-hidden="true"></i> Webstaff</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
 
           <!-- Dashboard link -->
-          <li class="nav-item">
+          <li class="nav-item nav-dashboard">
             <a class="nav-link active" aria-current="page" href="#dashboard"><i class="fa fa-tachometer fa-fw ltblue" aria-hidden="true"></i> Dashboard </a>
-          </li>
-          
-          <!-- Calendar Dropdown -->
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navBarCalendarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <i class="fa fa-calendar fa-fw ltblue" aria-hidden="true"></i> Calendar
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navBarCalendarDropdown">
-              <li>
-                <div class="input-group">
-                  <input type="month" id="ts-month-input" class="form-control" />
-                  <button class="btn btn-primary" type="button" id="ts-calendar-go"><i class="fa fa-calendar fa-fw ltblue" aria-hidden="true"></i></button>
-                </div>
-              </li>
-              <li>
-              <li><a class="dropdown-item" href="#calendar"> Today </a></li>
-            </ul>
           </li>
 
           <!-- Roster Dropdown -->
-          <li class="nav-item dropdown">
+          <li class="nav-item dropdown nav-roster">
             <a class="nav-link dropdown-toggle" href="#" id="navBarRosterDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <i class="fa fa-thumb-tack fa-fw ltblue" aria-hidden="true"></i> Roster
             </a>
             <ul class="dropdown-menu" aria-labelledby="navBarRosterDropdown">
               <li>
                 <div class="input-group">
-                  <input type="date" id="ts-r-date-input" class="form-control" />
+                  <input type="date" id="ts-r-date-input" class="form-control">
                   <button class="btn btn-primary" type="button" id="ts-roster-go"><i class="fa fa-calendar fa-fw ltblue" aria-hidden="true"></i></button>
                 </div>
               </li>
@@ -67,15 +52,32 @@
             </ul>
           </li>
 
+          <!-- Calendar Dropdown -->
+          <li class="nav-item dropdown nav-calendar">
+            <a class="nav-link dropdown-toggle" href="#" id="navBarCalendarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa fa-calendar fa-fw ltblue" aria-hidden="true"></i> Calendar
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navBarCalendarDropdown">
+              <li>
+                <div class="input-group">
+                  <input type="text" id="ts-month-input" class="form-control">
+                  <button class="btn btn-primary" type="button" id="ts-calendar-go"><i class="fa fa-calendar fa-fw ltblue" aria-hidden="true"></i></button>
+                </div>
+              </li>
+              <li>
+              <li><a class="dropdown-item" href="#calendar"> Today </a></li>
+            </ul>
+          </li>
+
           <!-- Picklist Dropdown -->
-          <li class="nav-item dropdown">
+          <li class="nav-item dropdown nav-picklist">
             <a class="nav-link dropdown-toggle" href="#" id="navBarPicklistDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <i class="fa fa-list-ol fa-fw ltblue" aria-hidden="true"></i> Picklist 
             </a>
             <ul class="dropdown-menu" aria-labelledby="navBarPicklistDropdown">
               <li>
                 <div class="input-group">
-                  <input type="date" id="ts-pl-date-input" class="form-control" />
+                  <input type="text" id="ts-pl-date-input" class="form-control">
                   <button class="btn btn-primary" type="button" id="ts-picklist-go"><i class="fa fa-calendar fa-fw ltblue" aria-hidden="true"></i></button>
                 </div>
               </li>
@@ -85,14 +87,14 @@
           </li>
 
           <!-- Holdlist Dropdown -->
-          <li class="nav-item dropdown">
+          <li class="nav-item dropdown nav-holdlist">
             <a class="nav-link dropdown-toggle" href="#" id="navBarHoldlistDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <i class="fa fa-bullseye fa-fw ltblue" aria-hidden="true"></i> Holdlist
             </a>
             <ul class="dropdown-menu" aria-labelledby="navBarHoldlistDropdown">
               <li>
                 <div class="input-group">
-                  <input type="date" id="ts-hl-date-input" class="form-control" />
+                  <input type="text" id="ts-hl-date-input" class="form-control">
                   <button class="btn btn-primary" type="button" id="ts-holdlist-go"><i class="fa fa-calendar fa-fw ltblue" aria-hidden="true"></i></button>
                 </div>
               </li>
@@ -102,7 +104,7 @@
           </li>
 
           <!-- Signup Dropdown -->
-          <li class="nav-item dropdown">
+<!--           <li class="nav-item dropdown nav-signup">
             <a class="nav-link dropdown-toggle" href="#" id="navBarSignupDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <i class="fa fa-telegram fa-fw ltblue" aria-hidden="true"></i> Signup
             </a>
@@ -110,34 +112,41 @@
               <li>
                 <div class="input-group">
                   <input type="date" id="ts-su-date-input" class="form-control" />
-                  <button class="btn btn-primary" type="button" id="ts-signup-go"><i class="fa fa-calendar fa-fw ltblue" aria-hidden="true"></i></button>
+                  <button class="btn btn-primary" type="button"id="ts-signup-go"><i class="fa fa-calendar fa-fw ltblue" aria-hidden="true"></i></button>
                 </div>
               </li>
               <li>
               <li><a class="dropdown-item" href="#signup"> Today </a></li>
             </ul>
+          </li> -->
+
+          <!-- Logout -->
+          <li class="nav-item">
+            <a class="act-logout nav-link" href="#logout"><i class="fa fa-fw fa-sign-out" aria-hidden="true"></i> Logout</a>
           </li>
+
+
         </ul>
-        <ul class="nav navbar-nav navbar-right">
+        <div class="form-check form-switch ms-auto">
+          <input class="form-check-input" type="checkbox" id="themeSwitch">
+          <label class="form-check-label" for="themeSwitch">Dark Mode</label>
+        </div>
+<!--         <ul class="nav navbar-nav navbar-right">
           <li><a href="#logout" class="act-logout ts-ld"><i class="fa fa-fw fa-sign-out" aria-hidden="true"></i> Logout</a></li>
-        </ul>
+        </ul> -->
       </div>
     </div>
   </nav>
 
 
 <div class="container">
-  <div id="msg" class="row">
-    <h2 class="text-primary text-center">We are brewing something exciting. Please check back soon.</h2>
-
-  </div>
   <div id="app" class="row">
   
 
   </div>
   <div class="row">
     <div class="footer">
-      <a href="https://kt3i.com"> &copy; 2022 KT3I </a>
+      <a href="https://kt3i.com"> &copy; 2024 KT3I </a>
     </div>
   </div>
 </div>
@@ -155,16 +164,64 @@
 <!-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
-<script src="//cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+<!-- <script src="//cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script> -->
+<script src="//cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="./assets/js/views.js"></script>
 <script src="./assets/js/singlePage.js"></script>
 <script src="./assets/js/working.js"></script>
-<script>
+    <script>
+        const themeSwitch = document.getElementById('themeSwitch');
+        const body = document.body;
+        const navbar = document.getElementById('navbar');
+        // const datepicker = document.getElementById('datepicker');
+        // const todayLink = document.getElementById('todayLink');
 
+        // Initialize Flatpickr for the date picker
+        // flatpickr(datepicker);
 
+        // Load theme from localStorage
+        function loadTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                body.setAttribute('data-bs-theme', 'dark');
+                themeSwitch.checked = true;
+                updateNavbarTheme(true);
+            } else {
+                body.setAttribute('data-bs-theme', 'light');
+                themeSwitch.checked = false;
+                updateNavbarTheme(false);
+            }
+        }
 
+        // Update Navbar Theme
+        function updateNavbarTheme(isDark) {
+            if (isDark) {
+                navbar.classList.remove('navbar-light', 'bg-light');
+                navbar.classList.add('navbar-dark', 'bg-dark');
+            } else {
+                navbar.classList.remove('navbar-dark', 'bg-dark');
+                navbar.classList.add('navbar-light', 'bg-light');
+            }
+        }
 
-</script>
+        // Save theme to localStorage
+        themeSwitch.addEventListener('change', () => {
+            const isDark = themeSwitch.checked;
+            body.setAttribute('data-bs-theme', isDark ? 'dark' : 'light');
+            updateNavbarTheme(isDark);
+            localStorage.setItem('theme', isDark ? 'dark' : 'light'); // Persist the theme
+        });
+
+        // Handle "Today" link in calendar dropdown
+        // todayLink.addEventListener('click', (e) => {
+        //     e.preventDefault();
+        //     const today = new Date().toISOString().split('T')[0];
+        //     datepicker.value = today; // Set date picker to today
+        // });
+
+        // Initialize theme on page load
+        loadTheme();
+    </script>
 
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

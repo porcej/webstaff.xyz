@@ -767,7 +767,7 @@ telestaffViews.prototype = {
 					var staClass = this._classifyStr(sob.title);
 					if (shiftObj.Station.length > 1){
 						var stationRow = $("<div/>").addClass("row");
-						stationRow.addClass("ts-station-row text-xs-center bg-info");
+						stationRow.addClass("ts-station-row text-xs-center");
 						stationRow.addClass(staClass);
 						stationRow.addClass(batClass);
 						if (sob.notes){
@@ -784,7 +784,7 @@ telestaffViews.prototype = {
 						var uob = sob.Unit[udx];
 						var unitClass =  this._classifyStr(uob.title);
 						var unitRow = $("<div/>").addClass("row");
-						unitRow.addClass("ts-unit-row text-xs-center bg-info");
+						unitRow.addClass("ts-unit-row text-xs-center");
 						unitRow.addClass(batClass);
 						unitRow.addClass(staClass);
 						unitRow.addClass(unitClass);

@@ -308,10 +308,20 @@ telestaff.prototype = {
 	// Activate navigation menu
 	doNav: function(target){
 		target = target || '';
+		console.log(`In doNav with target of ${target} - "ul.navbar-nav > li > .${target}" should be active.`)
+
+		// Get the element to toggle
+		const elementToToggle = document.querySelector('#navbarNav');
+
+		// Create a new instance of the Collapse class
+		const collapse = new bootstrap.Collapse(elementToToggle);
+
+		// Toggle the element
+		collapse.toggle(); 
 
 		if (target !== ''){
-			$('ul.navbar').find('.active').removeClass('active');
-			$('ul.navbar-nav > li > ' + target).addClass('active');
+			$('ul.navbar-nav').find('.active').removeClass('active');
+			$(`ul.navbar-nav > li.${target} > a`).addClass('active');
 		}
 
 		// $('button.navbar-toggle').addClass('collapsed');

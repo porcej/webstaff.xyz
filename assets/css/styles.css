@@ -357,13 +357,15 @@ div.event-icon.status {
 .panel-body .row {
     font-size: 14px;
     padding: 2px 4px;
-    border-top: 1px solid #F1F1F1;
+/*    border-top: 1px solid #F1F1F1;*/
     vertical-align: middle;
 
 }
 
 .panel-body .ts-position-row:nth-child(odd){
-  background-color: #F9F9F9;
+/*  background-color: #F9F9F9;*/
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
+/*    linear-gradient(rgba(0, 0, 0, 0.7),  rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));*/
 }
 
 .ts-workcode {
