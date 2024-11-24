@@ -363,9 +363,7 @@ div.event-icon.status {
 }
 
 .panel-body .ts-position-row:nth-child(odd){
-/*  background-color: #F9F9F9;*/
-  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
-/*    linear-gradient(rgba(0, 0, 0, 0.7),  rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));*/
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
 }
 
 .ts-workcode {
